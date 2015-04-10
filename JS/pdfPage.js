@@ -3,7 +3,9 @@ var main = function() {
     $('p').draggable({
         appendTo: "body",
         start: stopScroll,
-        stop: startScroll
+        stop: function(ev, ui) {
+            $(ui.draggable).detach().css({top: 0,left: 0}).appendTo(this);
+            }
     });
     
     $('.pdf').droppable()
