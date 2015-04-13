@@ -1,21 +1,13 @@
+/* PDF Characteristics */
+
 .pdf {
     display: none;
     position: absolute;
-}
-
-.Amer {
-    outline: #d6d6d6 dotted medium;
-    width: 95%;
-    height: 500px;
-}
-
-.Euro {
     outline: #d6d6d6 dotted medium;
     width: 80%;
-    height: 400px;
 }
 
-.current {
+.currentPDF {
     display: block;
 }
 
@@ -23,12 +15,36 @@
     position: relative;
 }
 
+/* Image storage and behavior */
+
 .scrollBox {
     height: 500px; 
     overflow: auto;
 }
 
+resizeWrapper {
+    display: inline-block;
+}
+
+/* DropDown menus */
 .paperSize {
+}
+
+.facility {
     left: 0px;
-    position:absolute;
+}
+
+/* Testing -- remove for production */
+
+p {
+    width: 20em
+    hight: 1em
+}
+
+.col-md-6 {
+    display: inline-block;
+}
+
+.buffer {
+    height: 20px;
 }
