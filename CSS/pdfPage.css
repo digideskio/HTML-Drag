@@ -23,8 +23,12 @@
 }
 
 /* for some reason, this doesn't need a period... and actually doesn't work with one*/
-resizeWrapper {
+.resizeWrapper {
     display: inline-block;
+}
+
+.pdfChild{
+    
 }
 
 .currentPDFchild {

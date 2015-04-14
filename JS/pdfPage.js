@@ -10,21 +10,25 @@ var main = function() {
 // ****************************************************************************************    
     // Make copy elements from the scrollbox when clicked and stick them in the PDF section
     
-    $('resizeWrapper').click(function() {
+    $('.scrollBox .resizeWrapper').click(function() {
         var myClone = $(this).clone();
        
         myClone.appendTo('.currentPDF');
        
+        
         myClone.draggable({
             containment: '.currentPDF'
         });
         
-        myClone.children('img').addClass('pdfChild')
+        myClone.addClass('pdfChild');       
         
         myClone.children('img').resizable({
             aspectRatio: 'true',
             containment: '.currentPDF'
         });
+        
+        
+        myClone.css("position", "absolute");
         
     });
     
@@ -35,26 +39,36 @@ var main = function() {
 
 // Behavior of elements in the pdf
 
-    $('.pdfChild').click(function() {
+    // Dynamically add a click function to elements as they are added to the PDF
+    $(document).on('click', '.pdfChild', function() {
         
         // quit click if we're dragging the element
         if ($(this).is('.ui-draggable-dragging')) {
-            return
-        }
-        
-        
+            return;
+        };
+
+
         if ($(this).is('.currentPDFchild')) {
-            
-            $(this).removeClass('currentPDFchild')
-            
+
+            $(this).removeClass('currentPDFchild');
+
         } else {
+            var currentChild = $('.currentPDFchild');
             
-            $(this).addClass('currentPDFchild')
+            currentChild.removeClass('currentPDFchild');
             
-        }
+            $(this).addClass('currentPDFchild');
+
+        };
+        
     });
     
- 
+    // Button up function to delete an element
+    $(document).keyup(function(event) {
+        if (event.keyCode === 46) {
+            $('.currentPDFchild').remove();  
+        };
+    });
     
 // *****************************************************************************************    
 // *****************************************************************************************
@@ -85,43 +99,8 @@ var main = function() {
         }
         pdfHeight()
     });
-    
-    
-    
-// ****************************************************************************************   
-    
-    /*
-    $('.pdf').click(function() {
-        var curSheet = $('.current');
-        var nextSheet = curSheet.next();
-        
-        if (nextSheet.length === 0) {
-            nextSheet = $('.pdf').first();
-        };
-        
-        curSheet.fadeOut(600).removeClass('current');
-        nextSheet.fadeIn(600).addClass('current');
-        
-    });
-    
-    */
 };
 
-// I don't use these functions anymore, but they can be used as reference
-/*
-    function stopScroll() {
-
-        $('.scrollBox').css({
-            overflow: 'visible',
-        });
-    };
-
-    function startScroll() {
-        $('.scrollBox').css({
-            overflow: 'auto',
-        });
-    };
-*/
 
 function pdfHeight() {
     
@@ -137,7 +116,7 @@ function pdfHeight() {
     var PDFHeight = PDFWidth * ratio
     
     $('.currentPDF').css("height", PDFHeight)
-}
+};
 
 $(document).ready(main);
 
