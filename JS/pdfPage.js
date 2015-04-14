@@ -20,6 +20,7 @@ var main = function() {
             containment: '.currentPDF'
         });
         
+        myClone.removeClass('SBchild')
         myClone.addClass('pdfChild');       
         
         myClone.children('img').resizable({
@@ -27,12 +28,32 @@ var main = function() {
             containment: '.currentPDF'
         });
         
-        
+        // so elements don't move other divs when resizing
         myClone.css("position", "absolute");
+        
+        // let's highlight this element so we know we just did something
+        
+        var oldSBchild = $('.currentSBchild');
+        oldSBchild.removeClass('currentSBchild');
+        
+        $(this).addClass('currentSBchild');
+        
+        $(this).animate({
+            "border-color": "#82CFFD",
+            backgroundColor: "#82CFFD"
+        }, 300);
+        
+        
+        $(this).animate({
+            "border-color": "#ffffff",
+            backgroundColor: "#ffffff"
+        }, 300);
+        
+        
         
     });
     
-    $('.pdf').droppable()
+    $('.pdf').droppable();
     
 // *****************************************************************************************
 // *****************************************************************************************
@@ -51,13 +72,25 @@ var main = function() {
         if ($(this).is('.currentPDFchild')) {
 
             $(this).removeClass('currentPDFchild');
+            
+            $(this).animate({
+                "border-color": "#ffffff"
+            }, 300);
 
         } else {
             var currentChild = $('.currentPDFchild');
             
             currentChild.removeClass('currentPDFchild');
             
+            currentChild.animate({
+                "border-color": "#ffffff"
+            }, 300);
+            
             $(this).addClass('currentPDFchild');
+
+            $(this).animate({
+                "border-color": "#a1ffa1"
+            }, 300);
 
         };
         
@@ -116,6 +149,8 @@ function pdfHeight() {
     var PDFHeight = PDFWidth * ratio
     
     $('.currentPDF').css("height", PDFHeight + "px")
+    
+    $('.currentPDF').parent().css("height", PDFHeight + "px")
     
     // adjust the size of the page container
     $('.pageContainer').css("height", PDFHeight + 20 + "px")

@@ -27,15 +27,26 @@
 }
 
 .resizeWrapper {
-    display: inline-block;
+    display: inline-block;    
+    border: #ffffff solid 5px;
+    border-radius: 5px;
+    margin:6px;
+}
+
+.SBchild {
+    position: relative;
+    left: 10px;
 }
 
 .pdfChild{
     
 }
 
+.currentSBchild {
+
+}
+
 .currentPDFchild {
-    outline: #a1ffa1 solid 5px;
 }
 
 /* DropDown menus */
