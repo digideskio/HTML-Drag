@@ -115,7 +115,13 @@ function pdfHeight() {
     };
     var PDFHeight = PDFWidth * ratio
     
-    $('.currentPDF').css("height", PDFHeight)
+    $('.currentPDF').css("height", PDFHeight + "px")
+    
+    // adjust the size of the page container
+    $('.pageContainer').css("height", PDFHeight + 20 + "px")
+    
+    // move the bottom buffers to be under the pdf
+    $('.bottom').css("top", PDFHeight + 20 + "px")
 };
 
 $(document).ready(main);

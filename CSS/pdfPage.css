@@ -1,3 +1,7 @@
+.pageContainer {
+    height: 100%;
+}
+
 /* PDF Characteristics */
 
 .pdf {
@@ -22,7 +26,6 @@
     overflow: auto;
 }
 
-/* for some reason, this doesn't need a period... and actually doesn't work with one*/
 .resizeWrapper {
     display: inline-block;
 }
@@ -32,7 +35,7 @@
 }
 
 .currentPDFchild {
-    outline: #a1ffa1 solid 3px;
+    outline: #a1ffa1 solid 5px;
 }
 
 /* DropDown menus */
