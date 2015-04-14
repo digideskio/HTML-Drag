@@ -11,22 +11,48 @@ var main = function() {
     // Make copy elements from the scrollbox when clicked and stick them in the PDF section
     
     $('resizeWrapper').click(function() {
-       var myClone = $(this).clone();
+        var myClone = $(this).clone();
        
-       myClone.appendTo('.currentPDF');
+        myClone.appendTo('.currentPDF');
        
-       myClone.draggable({
-           containment: '.currentPDF'
-       });
+        myClone.draggable({
+            containment: '.currentPDF'
+        });
         
-       myClone.children('img').resizable({
-           aspectRatio: 'true',
-           containment: '.currentPDF'
-       })
+        myClone.children('img').addClass('pdfChild')
+        
+        myClone.children('img').resizable({
+            aspectRatio: 'true',
+            containment: '.currentPDF'
+        });
         
     });
     
     $('.pdf').droppable()
+    
+// *****************************************************************************************
+// *****************************************************************************************
+
+// Behavior of elements in the pdf
+
+    $('.pdfChild').click(function() {
+        
+        // quit click if we're dragging the element
+        if ($(this).is('.ui-draggable-dragging')) {
+            return
+        }
+        
+        
+        if ($(this).is('.currentPDFchild')) {
+            
+            $(this).removeClass('currentPDFchild')
+            
+        } else {
+            
+            $(this).addClass('currentPDFchild')
+            
+        }
+    });
     
  
     
